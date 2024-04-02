@@ -5,28 +5,21 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.talespalma.restorantepanucci.navigation.AppDestination
 import br.com.talespalma.restorantepanucci.simpledates.SampleDate
 
 
 @Composable
-fun BottomBar() {
+fun BottomBar(onClick:(String) -> Unit = {},selectItem:AppDestination) {
    val barItems = SampleDate.sampleDateBarItems
-   var selectItem by remember {
-       mutableStateOf("Home")
-   }
     NavigationBar {
         barItems.forEach { item ->
             NavigationBarItem(
-                selected = item.title == selectItem,
-                onClick = {
-                    selectItem = item.title },
-                icon = { Icon(item.icon, contentDescription = item.title) },
-                label = { Text(text = item.title) },
+                selected = item.destination == selectItem,
+                onClick = { onClick(item.destination.route)},
+                icon = { Icon(item.icon, contentDescription = item.label) },
+                label = { Text(text = item.label) },
             )
         }
     }
@@ -36,5 +29,5 @@ fun BottomBar() {
 @Preview
 @Composable
 private fun BootomBarPreview() {
-    BottomBar()
+    BottomBar(selectItem = AppDestination.Home)
 }

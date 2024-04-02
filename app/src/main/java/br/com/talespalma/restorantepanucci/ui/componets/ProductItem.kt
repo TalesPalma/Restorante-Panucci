@@ -1,16 +1,13 @@
 package br.com.talespalma.restorantepanucci.ui.componets
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,27 +21,28 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.talespalma.restorantepanucci.simpledates.Bebidas
+import br.com.talespalma.restorantepanucci.simpledates.Item
 import br.com.talespalma.restorantepanucci.simpledates.SampleDate
 
 
 @Composable
-fun ProductItem(product: Bebidas) {
+fun ProductItem(product: Item,onClick:() -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(150.dp)
-            .padding(16.dp),
-        elevation = CardDefaults.cardElevation(20.dp),
-        colors = CardDefaults.cardColors(Color.White)
+            .padding(16.dp)
+            .clickable { onClick() }
+        ,
+        elevation = CardDefaults.cardElevation(50.dp),
+        colors = CardDefaults.cardColors(Color.White),
     ){
         Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Image(
                 painter = painterResource(id = product.image),
                 contentDescription = null,
                 modifier = Modifier
-                    .clip(RectangleShape)
-                    .border(BorderStroke(20.dp, Color.Transparent), shape = RectangleShape),
+                    .clip(RectangleShape),
                 contentScale = ContentScale.Crop
             )
             Text(
@@ -53,8 +51,14 @@ fun ProductItem(product: Bebidas) {
                 fontSize = 20.sp,
                 fontWeight = Bold
             )
-            Text(text = "Descrição: " + product.description, maxLines = 2, modifier = Modifier.padding(16.dp).heightIn(50.dp))
         }
+        Text(
+            text = "Descrição: " + product.description,
+            maxLines = 2,
+            modifier = Modifier
+                .padding(16.dp)
+                .heightIn(50.dp)
+        )
     }
 }
 
