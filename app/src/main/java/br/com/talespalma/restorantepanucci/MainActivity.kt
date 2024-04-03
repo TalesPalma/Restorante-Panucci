@@ -35,6 +35,7 @@ import br.com.talespalma.restorantepanucci.extensions.preferences.userPreference
 import br.com.talespalma.restorantepanucci.navigation.AppDestination
 import br.com.talespalma.restorantepanucci.simpledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.componets.BottomBar
+import br.com.talespalma.restorantepanucci.ui.componets.TopAppBar
 import br.com.talespalma.restorantepanucci.ui.screnns.AuthenticationScreen
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenCardapio
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenHome
@@ -66,6 +67,8 @@ fun App() {
     val navController = rememberNavController()
     val currentBackStackEntryState by navController.currentBackStackEntryAsState()
     val currentDestination = currentBackStackEntryState?.destination?.route
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val selectItem by remember(currentDestination) {
         val item = currentDestination?.let { current ->
             SampleDate.sampleDateBarItems.find {
@@ -75,6 +78,18 @@ fun App() {
         mutableStateOf(item.destination)
     }
     Scaffold(
+        topBar = { TopAppBar(onClickExit = {
+            scope.launch {
+                context.dataStore.edit {
+                    it.remove(userPreferences)
+                }
+                navController.navigate(AppDestination.Authentication.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                }
+            }
+        }) },
         bottomBar = {
             if (currentDestination != AppDestination.Infos.route) {
                 BottomBar(selectItem = selectItem, onClick = {
@@ -104,30 +119,31 @@ fun App() {
                             user = context.dataStore.data.first()[userPreferences]
                             dataState = "finished"
                         }
-                       when(dataState) {
-                           "loading" -> {
-                               Box(modifier = Modifier.fillMaxSize()) {
-                                   Text(
-                                       text = "Carregando...",
-                                       Modifier
-                                           .fillMaxWidth()
-                                           .align(Alignment.Center),
-                                       textAlign = TextAlign.Center
-                                   )
-                               }
-                           }
-                           "finished" -> {
-                               user?.let {
-                                   ScreenHome()
-                               } ?: LaunchedEffect(null) {
-                                   navController.navigate(AppDestination.Authentication.route) {
-                                       popUpTo(navController.graph.findStartDestination().id) {
-                                           inclusive = true
-                                       }
-                                   }
-                               }
-                           }
-                       }
+                        when (dataState) {
+                            "loading" -> {
+                                Box(modifier = Modifier.fillMaxSize()) {
+                                    Text(
+                                        text = "Carregando...",
+                                        Modifier
+                                            .fillMaxWidth()
+                                            .align(Alignment.Center),
+                                        textAlign = TextAlign.Center
+                                    )
+                                }
+                            }
+
+                            "finished" -> {
+                                user?.let {
+                                    ScreenHome()
+                                } ?: LaunchedEffect(null) {
+                                    navController.navigate(AppDestination.Authentication.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
                     }
                     composable(route = AppDestination.Product.route) {
@@ -167,7 +183,7 @@ fun App() {
                                 }
                             }
                             navController.navigate(AppDestination.Home.route) {
-                                navController.popBackStack()
+                                popUpTo(navController.graph.id)
                             }
                         }
                     }
