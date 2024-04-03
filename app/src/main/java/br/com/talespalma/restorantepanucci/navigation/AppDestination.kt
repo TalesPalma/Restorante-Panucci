@@ -5,4 +5,6 @@ sealed class AppDestination(val route:String){
     object Cardapio: AppDestination("cardapio")
     object Infos: AppDestination("infos")
     object Product: AppDestination("product")
+
+    object Authentication: AppDestination("authentication")
 }
