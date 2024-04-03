@@ -17,7 +17,8 @@ data class BarItem(
 data class Item(
     var title: String,
     val image: Int,
-    val description: String
+    val description: String,
+    val id: Int
 )
 object SampleDate {
 
@@ -43,22 +44,26 @@ object SampleDate {
         Item(
             title = "Coca Cola",
             image = R.drawable.cocacola,
-            description = "Coca Cola"
+            description = "Coca Cola",
+            id = 1
         ),
         Item(
             title = "Pepis",
             image = R.drawable.cocacola,
-            description = "Pepis deliciosa"
+            description = "Pepis deliciosa",
+            id = 2
         ),
         Item(
             title = "Coca Cola",
             image = R.drawable.cocacola,
-            description = "Coca Cola"
+            description = "Coca Cola",
+            id = 3
         ),
         Item(
             title = "Pepis",
             image = R.drawable.cocacola,
-            description = "Pepis deliciosa"
+            description = "Pepis deliciosa",
+            id = 4
         )
     )
 //Foods list
@@ -66,17 +71,20 @@ object SampleDate {
         Item(
             title = "Banco",
             image = R.drawable.cocacola,
-            description = "bancon de porco"
+            description = "bancon de porco",
+            id = 5
         ),
       Item(
           title = "Frango",
           image = R.drawable.cocacola,
-          description = "Frango"
+          description = "Frango",
+          id = 6
       ),
       Item(
           title = "Macarrao",
           image = R.drawable.cocacola,
-          description = "Macarrao"
+          description = "Macarrao",
+          id = 7
       )
   )
 
