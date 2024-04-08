@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.talespalma.restorantepanucci.extensions.preferences.dataStore
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenHome
@@ -64,10 +65,6 @@ fun NavGraphBuilder.homeListScreen(navController: NavHostController) {
     }
 }
 
-fun NavController.navigateToHome() {
-    navigate(HomeRoute){
-        popUpTo(graph.findStartDestination().id) {
-         inclusive = true
-        }
-    }
+fun NavController.navigateToHome(navOptions: NavOptions? = null) {
+    navigate(HomeRoute, navOptions = navOptions)
 }

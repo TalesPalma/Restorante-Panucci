@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.talespalma.restorantepanucci.extensions.preferences.dataStore
 import br.com.talespalma.restorantepanucci.extensions.preferences.userPreferences
@@ -29,10 +30,6 @@ fun NavGraphBuilder.authentication(navController: NavHostController) {
         }
     }
 }
-fun NavController.navigateToAuthentication() {
-    navigate(AuthenticationRoute) {
-        popUpTo(graph.findStartDestination().id) {
-            inclusive = true
-        }
-    }
+fun NavController.navigateToAuthentication(navOptions: NavOptions? = null) {
+    navigate(AuthenticationRoute,navOptions = navOptions)
 }

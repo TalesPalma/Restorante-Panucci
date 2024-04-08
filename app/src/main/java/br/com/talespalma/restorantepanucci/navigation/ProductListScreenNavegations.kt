@@ -4,12 +4,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenProduct
 
 
 
-private const val ProductRoute = "product"
+internal const val ProductRoute = "product"
 fun NavGraphBuilder.productListScreen(navController: NavHostController) {
     composable(route = ProductRoute) {
         ScreenProduct {
@@ -17,10 +18,6 @@ fun NavGraphBuilder.productListScreen(navController: NavHostController) {
         }
     }
 }
-fun NavController.navigateToProduct() {
-    navigate(ProductRoute){
-        popUpTo(graph.findStartDestination().id) {
-            inclusive = true
-        }
-    }
+fun NavController.navigateToProduct(navOptions: NavOptions? = null) {
+    navigate(ProductRoute, navOptions = navOptions)
 }

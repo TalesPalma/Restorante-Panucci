@@ -3,11 +3,12 @@ package br.com.talespalma.restorantepanucci.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenCardapio
 
 
-private const val cardapioRoute = "cardapio"
+internal const val cardapioRoute = "cardapio"
 fun NavGraphBuilder.cardapioListScreen(navController: NavHostController) {
     composable(route = cardapioRoute) {
         ScreenCardapio {
@@ -16,6 +17,6 @@ fun NavGraphBuilder.cardapioListScreen(navController: NavHostController) {
     }
 }
 
-fun NavController.navigateToCardapio() {
-    navigate(cardapioRoute)
+fun NavController.navigateToCardapio(navOptions: NavOptions? = null) {
+    navigate(cardapioRoute,navOptions = navOptions)
 }

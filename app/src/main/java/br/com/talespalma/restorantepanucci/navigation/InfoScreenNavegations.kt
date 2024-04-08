@@ -4,12 +4,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenInfos
 
 
-private const val InfoRoute = "infos"
+internal const val InfoRoute = "infos"
 fun NavGraphBuilder.infoScreen(navController: NavHostController) {
     composable(
         route = "$InfoRoute/{productId}"
@@ -27,6 +28,6 @@ fun NavGraphBuilder.infoScreen(navController: NavHostController) {
 }
 
 
-fun NavController.navigateToInfo(id: String) {
-    navigate("$InfoRoute/$id")
+fun NavController.navigateToInfo(id: String,navOptions: NavOptions? = null) {
+    navigate("$InfoRoute/$id",navOptions = navOptions)
 }
