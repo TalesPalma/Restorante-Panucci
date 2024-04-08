@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.talespalma.restorantepanucci.navigation.AppDestination
-import br.com.talespalma.restorantepanucci.simpledates.SampleDate
+import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 
 
 @Composable

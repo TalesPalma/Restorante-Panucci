@@ -33,7 +33,8 @@ import androidx.navigation.compose.rememberNavController
 import br.com.talespalma.restorantepanucci.extensions.preferences.dataStore
 import br.com.talespalma.restorantepanucci.extensions.preferences.userPreferences
 import br.com.talespalma.restorantepanucci.navigation.AppDestination
-import br.com.talespalma.restorantepanucci.simpledates.SampleDate
+import br.com.talespalma.restorantepanucci.navigation.PanutiNavHost
+import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.componets.BottomBar
 import br.com.talespalma.restorantepanucci.ui.componets.TopAppBar
 import br.com.talespalma.restorantepanucci.ui.screnns.AuthenticationScreen
@@ -102,93 +103,7 @@ fun App() {
         },
         content = {
             Box(modifier = Modifier.padding(it)) {
-                NavHost(
-                    navController = navController,
-                    startDestination = AppDestination.Home.route
-                ) {
-                    composable(route = AppDestination.Home.route) {
-                        val userPreferences = stringPreferencesKey("usuario_logado")
-                        val context = LocalContext.current
-                        var user: String? by remember {
-                            mutableStateOf(null)
-                        }
-                        var dataState by remember {
-                            mutableStateOf("loading")
-                        }
-                        LaunchedEffect(null) {
-                            user = context.dataStore.data.first()[userPreferences]
-                            dataState = "finished"
-                        }
-                        when (dataState) {
-                            "loading" -> {
-                                Box(modifier = Modifier.fillMaxSize()) {
-                                    Text(
-                                        text = "Carregando...",
-                                        Modifier
-                                            .fillMaxWidth()
-                                            .align(Alignment.Center),
-                                        textAlign = TextAlign.Center
-                                    )
-                                }
-                            }
-
-                            "finished" -> {
-                                user?.let {
-                                    ScreenHome()
-                                } ?: LaunchedEffect(null) {
-                                    navController.navigate(AppDestination.Authentication.route) {
-                                        popUpTo(navController.graph.findStartDestination().id) {
-                                            inclusive = true
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                    composable(route = AppDestination.Product.route) {
-                        ScreenProduct {
-                            navController.navigate("${AppDestination.Infos.route}/${it.id}") {
-                                popUpTo(AppDestination.Infos.route) { inclusive = true }
-                            }
-                        }
-                    }
-                    composable(route = AppDestination.Cardapio.route) {
-                        ScreenCardapio {
-                            navController.navigate("${AppDestination.Infos.route}/${it.id}") {
-                                popUpTo(AppDestination.Infos.route) { inclusive = true }
-                            }
-                        }
-                    }
-                    composable(
-                        route = "${AppDestination.Infos.route}/{productId}"
-                    ) { backStackEntry ->
-                        val id = backStackEntry.arguments?.getString("productId") ?: "0"
-                        val listas = SampleDate.cardapio + SampleDate.sampleBebida
-                        listas.find { it.id == id.toInt() }?.let { product ->
-                            ScreenInfos(product,
-                                onClickButton = { navController.popBackStack() }
-                            )
-                        } ?: LaunchedEffect(key1 = Unit) {
-                            navController.navigateUp()
-                        }
-                    }
-                    composable(AppDestination.Authentication.route) {
-                        val context = LocalContext.current
-                        val scope = rememberCoroutineScope()
-                        AuthenticationScreen { user ->
-                            scope.launch {
-                                context.dataStore.edit { preference ->
-                                    preference[userPreferences] = user
-                                }
-                            }
-                            navController.navigate(AppDestination.Home.route) {
-                                popUpTo(navController.graph.id)
-                            }
-                        }
-                    }
-
-                }
+                PanutiNavHost(navController = navController)
             }
         })
 }

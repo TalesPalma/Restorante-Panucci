@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import br.com.talespalma.restorantepanucci.simpledates.Item
-import br.com.talespalma.restorantepanucci.simpledates.SampleDate
+import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.componets.ProductItem
 
 

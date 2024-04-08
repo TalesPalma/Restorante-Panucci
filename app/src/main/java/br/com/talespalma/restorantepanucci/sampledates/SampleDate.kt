@@ -1,4 +1,4 @@
-package br.com.talespalma.restorantepanucci.simpledates
+package br.com.talespalma.restorantepanucci.sampledates
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -43,25 +43,25 @@ object SampleDate {
     val sampleBebida = listOf(
         Item(
             title = "Coca Cola",
-            image = R.drawable.cocacola,
+            image = R.drawable.bebidas,
             description = "Coca Cola",
             id = 1
         ),
         Item(
             title = "Pepis",
-            image = R.drawable.cocacola,
+            image = R.drawable.bebidas,
             description = "Pepis deliciosa",
             id = 2
         ),
         Item(
             title = "Coca Cola",
-            image = R.drawable.cocacola,
+            image = R.drawable.bebidas,
             description = "Coca Cola",
             id = 3
         ),
         Item(
             title = "Pepis",
-            image = R.drawable.cocacola,
+            image = R.drawable.bebidas,
             description = "Pepis deliciosa",
             id = 4
         )
@@ -70,19 +70,19 @@ object SampleDate {
   val cardapio = listOf(
         Item(
             title = "Banco",
-            image = R.drawable.cocacola,
+            image = R.drawable.alimentos,
             description = "bancon de porco",
             id = 5
         ),
       Item(
           title = "Frango",
-          image = R.drawable.cocacola,
+          image = R.drawable.alimentos,
           description = "Frango",
           id = 6
       ),
       Item(
           title = "Macarrao",
-          image = R.drawable.cocacola,
+          image = R.drawable.alimentos,
           description = "Macarrao",
           id = 7
       )

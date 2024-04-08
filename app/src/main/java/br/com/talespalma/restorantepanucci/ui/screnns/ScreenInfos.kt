@@ -1,12 +1,10 @@
 package br.com.talespalma.restorantepanucci.ui.screnns
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.MutatePriority
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -22,11 +20,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.talespalma.restorantepanucci.simpledates.Item
-import br.com.talespalma.restorantepanucci.simpledates.SampleDate
+import androidx.compose.ui.unit.sp
+import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 
 
 @Composable
@@ -36,6 +36,12 @@ fun ScreenInfos(product: Item,onClickButton:() -> Unit = {}) {
         }
         Column(modifier = Modifier.fillMaxSize()) {
             val alignment = Alignment.CenterHorizontally
+            Text(
+                text = product.title,
+                modifier = Modifier.align(alignment).offset(x = 2.dp, y = 30.dp),
+                fontFamily = FontFamily.Cursive,
+                fontSize = 40.sp
+            )
             Image(
                 painter = painterResource(id = product.image),
                 contentDescription = null,

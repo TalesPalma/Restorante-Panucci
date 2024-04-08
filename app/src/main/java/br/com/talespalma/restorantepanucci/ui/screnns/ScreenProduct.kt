@@ -4,8 +4,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.talespalma.restorantepanucci.simpledates.Item
-import br.com.talespalma.restorantepanucci.simpledates.SampleDate
+import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.componets.ProductItem
 
 
