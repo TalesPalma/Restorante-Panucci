@@ -6,9 +6,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import br.com.talespalma.restorantepanucci.R
-import br.com.talespalma.restorantepanucci.navigation.HomeRoute
-import br.com.talespalma.restorantepanucci.navigation.ProductRoute
-import br.com.talespalma.restorantepanucci.navigation.cardapioRoute
+import br.com.talespalma.restorantepanucci.model.Product
 
 
 sealed class BarItem(
@@ -32,15 +30,6 @@ sealed class BarItem(
 }
 
 
-
-
-data class Item(
-    var title: String,
-    val image: Int,
-    val description: String,
-    val id: Int
-)
-
 object SampleDate {
 
     val sampleDateBarItems:List<BarItem> = listOf(
@@ -48,25 +37,25 @@ object SampleDate {
     )
 
     val sampleBebida = listOf(
-        Item(
+        Product(
             title = "Coca Cola",
             image = R.drawable.bebidas,
             description = "Coca Cola",
             id = 1
         ),
-        Item(
+        Product(
             title = "Pepis",
             image = R.drawable.bebidas,
             description = "Pepis deliciosa",
             id = 2
         ),
-        Item(
+        Product(
             title = "Coca Cola",
             image = R.drawable.bebidas,
             description = "Coca Cola",
             id = 3
         ),
-        Item(
+        Product(
             title = "Pepis",
             image = R.drawable.bebidas,
             description = "Pepis deliciosa",
@@ -76,19 +65,19 @@ object SampleDate {
 
     //Foods list
     val cardapio = listOf(
-        Item(
+        Product(
             title = "Banco",
             image = R.drawable.alimentos,
             description = "bancon de porco",
             id = 5
         ),
-        Item(
+        Product(
             title = "Frango",
             image = R.drawable.alimentos,
             description = "Frango",
             id = 6
         ),
-        Item(
+        Product(
             title = "Macarrao",
             image = R.drawable.alimentos,
             description = "Macarrao",

@@ -12,24 +12,24 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.model.Product
 import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 import br.com.talespalma.restorantepanucci.ui.componets.ProductItem
 
 
 @Composable
-fun ScreenCardapio(onClick:(Item) -> Unit = {}) {
-    Column(Modifier.fillMaxSize()){
+fun ScreenCardapio(onClick: (Product) -> Unit = {}) {
+    Column(Modifier.fillMaxSize()) {
         Text(
             text = "Cardapio",
             fontWeight = FontWeight.Bold,
             fontSize = 50.sp,
             fontFamily = FontFamily.Cursive,
-            modifier = Modifier.align( Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         LazyColumn {
             items(SampleDate.cardapio) { item ->
-                ProductItem(product = item){ onClick(item) }
+                ProductItem(product = item) { onClick(item) }
             }
         }
     }

@@ -25,47 +25,49 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.model.Product
 import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 
 
 @Composable
-fun ScreenInfos(product: Item,onClickButton:() -> Unit = {}) {
-        var number by remember {
-            mutableStateOf("")
+fun ScreenInfos(product: Product, onClickButton: () -> Unit = {}) {
+    var number by remember {
+        mutableStateOf("")
+    }
+    Column(modifier = Modifier.fillMaxSize()) {
+        val alignment = Alignment.CenterHorizontally
+        Text(
+            text = product.title,
+            modifier = Modifier
+                .align(alignment)
+                .offset(x = 2.dp, y = 30.dp),
+            fontFamily = FontFamily.Cursive,
+            fontSize = 40.sp
+        )
+        Image(
+            painter = painterResource(id = product.image),
+            contentDescription = null,
+            modifier = Modifier
+                .clip(RectangleShape)
+                .align(Alignment.CenterHorizontally)
+                .padding(50.dp),
+            contentScale = ContentScale.Crop
+        )
+        TextField(
+            value = number,
+            onValueChange = { number = it },
+            modifier = Modifier
+                .align(alignment)
+                .padding(bottom = 16.dp),
+            placeholder = { Text(text = "Quatidade de ${product.title} desejada ") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        )
+        Button(onClick = onClickButton, modifier = Modifier.align(alignment)) {
+            Text(text = "Confirmar")
         }
-        Column(modifier = Modifier.fillMaxSize()) {
-            val alignment = Alignment.CenterHorizontally
-            Text(
-                text = product.title,
-                modifier = Modifier.align(alignment).offset(x = 2.dp, y = 30.dp),
-                fontFamily = FontFamily.Cursive,
-                fontSize = 40.sp
-            )
-            Image(
-                painter = painterResource(id = product.image),
-                contentDescription = null,
-                modifier = Modifier
-                    .clip(RectangleShape)
-                    .align(Alignment.CenterHorizontally)
-                    .padding(50.dp)
-                ,
-                contentScale = ContentScale.Crop
-            )
-            TextField(
-                value = number,
-                onValueChange = { number = it },
-                modifier = Modifier
-                    .align(alignment)
-                    .padding(bottom = 16.dp),
-                 placeholder = { Text(text = "Quatidade de ${product.title} desejada ") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            )
-            Button(onClick = onClickButton, modifier = Modifier.align(alignment)) {
-                Text(text = "Confirmar")
-            }
-        }
+    }
 }
+
 @Preview(showSystemUi = true)
 @Composable
 private fun ScreenInfosPreview() {

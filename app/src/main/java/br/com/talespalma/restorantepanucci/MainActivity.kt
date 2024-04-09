@@ -20,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.datastore.preferences.core.edit
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navOptions
 import br.com.talespalma.restorantepanucci.extensions.preferences.dataStore
 import br.com.talespalma.restorantepanucci.extensions.preferences.userPreferences
 import br.com.talespalma.restorantepanucci.navigation.HomeRoute
@@ -29,14 +28,12 @@ import br.com.talespalma.restorantepanucci.navigation.PanutiNavHost
 import br.com.talespalma.restorantepanucci.navigation.ProductRoute
 import br.com.talespalma.restorantepanucci.navigation.cardapioRoute
 import br.com.talespalma.restorantepanucci.navigation.navigateToAuthentication
-import br.com.talespalma.restorantepanucci.navigation.navigateToCardapio
-import br.com.talespalma.restorantepanucci.navigation.navigateToHome
-import br.com.talespalma.restorantepanucci.navigation.navigateToProduct
 import br.com.talespalma.restorantepanucci.sampledates.BarItem
 import br.com.talespalma.restorantepanucci.ui.componets.BottomBar
 import br.com.talespalma.restorantepanucci.ui.componets.TopAppBar
 import br.com.talespalma.restorantepanucci.ui.theme.RestorantePanucciTheme
 import kotlinx.coroutines.launch
+import navigateSingleTopWithPopUpTo
 
 
 class MainActivity : ComponentActivity() {
@@ -45,8 +42,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RestorantePanucciTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
                     App()
                 }
@@ -71,49 +67,28 @@ fun App() {
         }
         mutableStateOf(item)
     }
-    Scaffold(
-        topBar = {
-            TopAppBar(onClickExit = {
-                scope.launch {
-                    context.dataStore.edit {
-                        it.remove(userPreferences)
-                    }
-                    navController.navigateToAuthentication()
+    Scaffold(topBar = {
+        TopAppBar(onClickExit = {
+            scope.launch {
+                context.dataStore.edit {
+                    it.remove(userPreferences)
                 }
-            })
-        },
-        bottomBar = {
-            if (currentDestination != InfoRoute) {
-                BottomBar(selectItem = selectItem.label, onClick = {item ->
-                    val (route, action) = when(item){
-                        BarItem.Bebidas -> Pair(
-                            ProductRoute,
-                            navController::navigateToProduct
-                        )
-                        BarItem.Cardapio -> Pair(
-                            cardapioRoute,
-                            navController::navigateToCardapio
-                        )
-                        BarItem.Home -> Pair(
-                            HomeRoute,
-                            navController::navigateToHome
-                        )
-                    }
-                    val navOpt = navOptions {
-                        launchSingleTop = true
-                        popUpTo(route)
-                    }
-
-                    action(navOpt)
-                })
-            }
-        },
-        content = {
-            Box(modifier = Modifier.padding(it)) {
-                PanutiNavHost(navController = navController)
+                navController.navigateToAuthentication()
             }
         })
+    }, bottomBar = {
+        if (currentDestination != InfoRoute) {
+            BottomBar(selectItem = selectItem.label, onClick = { item ->
+                navController.navigateSingleTopWithPopUpTo(item)
+            })
+        }
+    }, content = {
+        Box(modifier = Modifier.padding(it)) {
+            PanutiNavHost(navController = navController)
+        }
+    })
 }
+
 
 @Preview
 @Composable

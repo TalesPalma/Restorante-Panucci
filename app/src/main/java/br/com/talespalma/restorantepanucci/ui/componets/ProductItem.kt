@@ -21,22 +21,21 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.talespalma.restorantepanucci.sampledates.Item
+import br.com.talespalma.restorantepanucci.model.Product
 import br.com.talespalma.restorantepanucci.sampledates.SampleDate
 
 
 @Composable
-fun ProductItem(product: Item,onClick:() -> Unit = {}) {
+fun ProductItem(product: Product, onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(150.dp)
             .padding(16.dp)
-            .clickable { onClick() }
-        ,
+            .clickable { onClick() },
         elevation = CardDefaults.cardElevation(50.dp),
         colors = CardDefaults.cardColors(Color.White),
-    ){
+    ) {
         Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Image(
                 painter = painterResource(id = product.image),
