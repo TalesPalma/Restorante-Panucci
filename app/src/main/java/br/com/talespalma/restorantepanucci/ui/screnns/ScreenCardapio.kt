@@ -18,7 +18,7 @@ import br.com.talespalma.restorantepanucci.ui.componets.ProductItem
 
 
 @Composable
-fun ScreenCardapio(onClick: (Product) -> Unit = {}) {
+fun ScreenCardapio(onClick: (Product) -> Unit = {}, products:List<Product>) {
     Column(Modifier.fillMaxSize()) {
         Text(
             text = "Cardapio",
@@ -28,7 +28,7 @@ fun ScreenCardapio(onClick: (Product) -> Unit = {}) {
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         LazyColumn {
-            items(SampleDate.cardapio) { item ->
+            items(products) { item ->
                 ProductItem(product = item) { onClick(item) }
             }
         }
@@ -38,5 +38,5 @@ fun ScreenCardapio(onClick: (Product) -> Unit = {}) {
 @Preview(showSystemUi = true)
 @Composable
 private fun ScreenCardapioPreview() {
-    ScreenCardapio()
+    ScreenCardapio(products = SampleDate.cardapio)
 }

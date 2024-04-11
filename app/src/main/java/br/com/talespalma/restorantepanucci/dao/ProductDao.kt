@@ -6,7 +6,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ProductDao{
-    private val totalList = SampleDate.sampleBebida + SampleDate.cardapio
-    val product  = MutableStateFlow(totalList).asStateFlow()
-    fun findById(id: String) = totalList.find { it.id == id.toInt() }
+    val productDrinks  = MutableStateFlow(SampleDate.sampleBebida).asStateFlow()
+    val productFoods  = MutableStateFlow(SampleDate.cardapio).asStateFlow()
+    fun findById(id: String) = if(id.toInt() <= 4) {
+        productDrinks.value.find { it.id == id.toInt() }
+    }
+    else productFoods.value.find { it.id == id.toInt() }
+
 }

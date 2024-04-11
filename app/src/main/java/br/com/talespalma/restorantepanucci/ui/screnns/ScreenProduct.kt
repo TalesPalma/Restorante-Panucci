@@ -10,9 +10,9 @@ import br.com.talespalma.restorantepanucci.ui.componets.ProductItem
 
 
 @Composable
-fun ScreenProduct(onClick: (Product) -> Unit = {}) {
+fun ScreenProduct(onClick: (Product) -> Unit = {},products: List<Product>) {
     LazyColumn {
-        items(SampleDate.sampleBebida) { item ->
+        items(products) { item ->
             ProductItem(product = item) { onClick(item) }
         }
     }
@@ -22,5 +22,5 @@ fun ScreenProduct(onClick: (Product) -> Unit = {}) {
 @Preview(showSystemUi = true)
 @Composable
 private fun SecreenProductPreview() {
-    ScreenProduct()
+    ScreenProduct(products = SampleDate.sampleBebida)
 }

@@ -18,7 +18,7 @@ class DrinksListViewModel(
 
     init {
         viewModelScope.launch {
-            dao.product.collect { products ->
+            dao.productDrinks.collect { products ->
                 _uiState.update {
                     it.copy(products = products)
                 }

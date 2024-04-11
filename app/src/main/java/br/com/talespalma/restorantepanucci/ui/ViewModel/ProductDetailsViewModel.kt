@@ -11,14 +11,18 @@ class ProductDetailsViewModel(
     private val dao: ProductDao = ProductDao()
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ProductDetailsUiState())
+    private val _uiState = MutableStateFlow(ProductDetailsUiState.Loading)
     val uiState = _uiState.asStateFlow()
 
-    fun findProductById(id: String) {
-        dao.findById(id)?.let { product ->
-            _uiState.update {
-                it.copy(product = product)
-            }
+    fun findProductById(id: String): ProductDetailsUiState? {
+        _uiState.update { ProductDetailsUiState.Loading }
+
+        if (id.isBlank()) {
+           return ProductDetailsUiState.Empty
+        }
+
+        return dao.findById(id)?.let { product ->
+            ProductDetailsUiState.Success(product)
         }
     }
 

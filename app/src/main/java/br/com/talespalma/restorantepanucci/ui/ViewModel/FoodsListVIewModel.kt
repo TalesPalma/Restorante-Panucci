@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class FoodsLIstVIewModel(
+class FoodsListVIewModel(
     private val dao: ProductDao = ProductDao()
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(FoodsListUiState())
@@ -17,7 +17,7 @@ class FoodsLIstVIewModel(
 
     init {
         viewModelScope.launch {
-            dao.product.collect { products ->
+            dao.productFoods.collect { products ->
                 _uiState.update {
                     it.copy(products = products)
                 }
