@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -88,7 +89,14 @@ fun App() {
         }
         mutableStateOf(item)
     }
-    Scaffold(topBar = {
+    Scaffold(snackbarHost ={
+        SnackbarHost(hostState = snackbarHostState){ data ->
+            Snackbar{
+                Text(tex= data.visuals.message)
+            }
+        }
+    }
+        ,topBar = {
         TopAppBar(onClickExit = {
             scope.launch {
                 context.dataStore.edit {
