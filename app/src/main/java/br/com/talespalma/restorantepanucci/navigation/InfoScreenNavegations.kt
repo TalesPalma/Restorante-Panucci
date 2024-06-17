@@ -19,7 +19,15 @@ fun NavGraphBuilder.infoScreen(navController: NavHostController) {
         val viewModel = viewModel<ProductDetailsViewModel>()
         ScreenInfos(
             viewModel.findProductById(id.toString())
-        ) { navController.popBackStack() }
+        ) {
+
+            navController.currentBackStackEntry?.savedStateHandle?.set(
+                "product-message",
+                "Pedido realizado com sucesso!!"
+            )
+            navController.popBackStack()
+
+        }
     }
 }
 
