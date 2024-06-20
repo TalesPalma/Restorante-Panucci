@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.datastore.preferences.core.edit
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import br.com.alura.panucci.ui.viewmodels.SAVE_STATE_KEY
 import br.com.talespalma.restorantepanucci.extensions.preferences.dataStore
 import br.com.talespalma.restorantepanucci.extensions.preferences.userPreferences
 import br.com.talespalma.restorantepanucci.navigation.HomeRoute
@@ -66,7 +67,7 @@ fun App() {
 
     val messaDone = currentBackStackEntryState
         ?.savedStateHandle
-        ?.getStateFlow<String?>("product-message", null)
+        ?.getStateFlow<String?>(SAVE_STATE_KEY, null)
         ?.collectAsState()
 
     val snackbarHostState = remember { SnackbarHostState() }

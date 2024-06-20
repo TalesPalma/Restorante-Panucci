@@ -17,7 +17,8 @@ fun NavGraphBuilder.infoScreen(navController: NavHostController) {
         route = "$InfoRoute/{productId}"
     ) { backStackEntry ->
         val id = backStackEntry.arguments?.getString("productId")?.toInt() ?: 0
-        val viewModel = viewModel<ProductDetailsViewModel>()
+        val viewModel =
+            viewModel<ProductDetailsViewModel>(factory = ProductDetailsViewModel.Factory)
         ScreenInfos(
             viewModel.findProductById(id.toString())
         ) {
