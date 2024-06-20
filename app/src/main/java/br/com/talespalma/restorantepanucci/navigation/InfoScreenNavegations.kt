@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import br.com.alura.panucci.ui.viewmodels.ProductDetailsViewModel
+import br.com.alura.panucci.ui.viewmodels.SAVE_STATE_KEY
 import br.com.talespalma.restorantepanucci.ui.screnns.ScreenInfos
 
 
@@ -22,7 +23,7 @@ fun NavGraphBuilder.infoScreen(navController: NavHostController) {
         ) {
 
             navController.currentBackStackEntry?.savedStateHandle?.set(
-                "product-message",
+                SAVE_STATE_KEY,
                 "Pedido realizado com sucesso!!"
             )
             navController.popBackStack()

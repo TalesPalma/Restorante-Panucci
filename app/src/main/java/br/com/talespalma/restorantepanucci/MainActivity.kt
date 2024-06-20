@@ -92,7 +92,7 @@ fun App() {
     Scaffold(snackbarHost ={
         SnackbarHost(hostState = snackbarHostState){ data ->
             Snackbar{
-                Text(tex= data.visuals.message)
+                Text(text =  data.visuals.message)
             }
         }
     }
