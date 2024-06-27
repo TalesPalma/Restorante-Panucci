@@ -7,6 +7,9 @@ import androidx.navigation.compose.NavHost
 import principalGraph
 
 
+
+
+internal const val uri = "alura://panucci.com.br"
 @Composable
 fun PanutiNavHost(navController: NavHostController) {
     NavHost(

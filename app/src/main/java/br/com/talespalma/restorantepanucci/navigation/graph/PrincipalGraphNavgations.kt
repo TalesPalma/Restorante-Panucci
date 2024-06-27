@@ -5,9 +5,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
 import androidx.navigation.navigation
 import br.com.talespalma.restorantepanucci.navigation.HomeRoute
-import br.com.talespalma.restorantepanucci.navigation.ProductRoute
 import br.com.talespalma.restorantepanucci.navigation.cardapioListScreen
 import br.com.talespalma.restorantepanucci.navigation.cardapioRoute
+import br.com.talespalma.restorantepanucci.navigation.drinkRoute
 import br.com.talespalma.restorantepanucci.navigation.homeListScreen
 import br.com.talespalma.restorantepanucci.navigation.navigateToCardapio
 import br.com.talespalma.restorantepanucci.navigation.navigateToHome
@@ -39,7 +39,7 @@ fun NavGraphBuilder.principalGraph(navController: NavHostController) {
 ) {
     val (route, action) = when (item) {
         BarItem.Bebidas -> Pair(
-            ProductRoute,
+            drinkRoute,
             ::navigateToProduct
         )
 

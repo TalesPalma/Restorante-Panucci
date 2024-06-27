@@ -15,11 +15,10 @@ import br.com.talespalma.restorantepanucci.ui.screnns.ScreenProduct
 
 
 
-internal const val ProductRoute = "product"
-private const val uri = "alura://panucci.com.br/drinks"
+internal const val drinkRoute = "drink"
 fun NavGraphBuilder.productListScreen(navController: NavHostController) {
-    composable(route = ProductRoute, deepLinks = listOf(navDeepLink {
-        uriPattern = uri
+    composable(route = drinkRoute, deepLinks = listOf(navDeepLink {
+        uriPattern ="$uri/$drinkRoute"
     })
     ) {
         val viewModel = viewModel<DrinksListViewModel>()
@@ -33,5 +32,5 @@ fun NavGraphBuilder.productListScreen(navController: NavHostController) {
         }
 }
 fun NavController.navigateToProduct(navOptions: NavOptions? = null) {
-    navigate(ProductRoute, navOptions = navOptions)
+    navigate(drinkRoute, navOptions = navOptions)
 }

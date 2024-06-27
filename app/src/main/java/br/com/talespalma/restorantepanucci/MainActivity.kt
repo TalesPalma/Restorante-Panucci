@@ -33,8 +33,8 @@ import br.com.talespalma.restorantepanucci.extensions.preferences.userPreference
 import br.com.talespalma.restorantepanucci.navigation.HomeRoute
 import br.com.talespalma.restorantepanucci.navigation.InfoRoute
 import br.com.talespalma.restorantepanucci.navigation.PanutiNavHost
-import br.com.talespalma.restorantepanucci.navigation.ProductRoute
 import br.com.talespalma.restorantepanucci.navigation.cardapioRoute
+import br.com.talespalma.restorantepanucci.navigation.drinkRoute
 import br.com.talespalma.restorantepanucci.navigation.navigateToAuthentication
 import br.com.talespalma.restorantepanucci.sampledates.BarItem
 import br.com.talespalma.restorantepanucci.ui.componets.BottomBar
@@ -84,7 +84,7 @@ fun App() {
     val selectItem by remember(currentDestination) {
         val item = when (currentDestination) {
             HomeRoute -> BarItem.Home
-            ProductRoute -> BarItem.Bebidas
+            drinkRoute -> BarItem.Bebidas
             cardapioRoute -> BarItem.Cardapio
             else -> BarItem.Home
         }
